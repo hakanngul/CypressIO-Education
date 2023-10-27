@@ -1,5 +1,5 @@
 describe("XPath Locators", () => {
-  it.skip("find no of products", () => {
+  it("find no of products", () => {
     cy.visit("http://www.automationpractice.pl/index.php");
     cy.xpath("//a[@title='Women']").click();
     cy.xpath(
