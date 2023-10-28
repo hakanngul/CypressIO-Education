@@ -1,0 +1,8 @@
+{
+  "usernameInput": "[name='username']",
+  "passwordInput": "[name='password']",
+  "loginButton": ".orangehrm-login-button",
+  "profileArea": ".oxd-userdropdown",
+  "profileName": ".oxd-userdropdown-name",
+  "logoutButton": "Logout"
+}

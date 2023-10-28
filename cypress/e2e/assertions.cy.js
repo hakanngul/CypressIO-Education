@@ -8,26 +8,28 @@ describe("Assertions Tests", () => {
 
   it("Implicit Assertions", () => {
     let myValue = "";
-    cy.url().should("include", "orangehrmlive.com");
-    cy.url().should("eq", baseURl);
-    cy.url().should("contain", "orangehrmlive");
-    cy.get(".oxd-sheet > :nth-child(1)")
-      .invoke("text")
-      .then((text) => {
-        myValue = text.split(":")[1].trim();
-      })
-      .then(() => {
-        cy.get("[name='username']").type(myValue);
-      });
+    let expectedName = "Gladys Eeya Collings";
+    cy.url()
+      .should("include", "orangehrmlive.com")
+      .and("eq", baseURl)
+      .and("contain", "orangehrmlive")
+      .and("not.contain", "hakan");
 
-    cy.get(".oxd-sheet > :nth-child(2)")
-      .invoke("text")
-      .then((text) => {
-        text = text.split(":")[1].trim();
-        cy.get("[name='password']").type(text);
-      });
-    cy.get(".orangehrm-login-button").click();
+    cy.get(".orangehrm-login-branding > img").should("be.visible").and("exist");
+
+    cy.fixture("selectors.json").then((selectors) => {
+      cy.get(selectors.usernameInput).type("Admin");
+      cy.get(selectors.passwordInput).type("admin123");
+      cy.get(selectors.loginButton).click();
+      // cy.get(selectors.profileName).should("contain.text", expectedName);
+      //cy.get(selectors.profileName).then((text) => {
+      //  let actName = text;
+      //  expect(actName).to.eq(expectedName);
+      //  assert.equal(actName, expectedName);
+      // });
+      cy.get(selectors.profileArea).wait(800).should("be.visible").click();
+      cy.wait(1000);
+      cy.contains(selectors.logoutButton).click();
+    });
   });
-
-  //it("Explicit Assertions", () => {});
 });
