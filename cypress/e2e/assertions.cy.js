@@ -21,15 +21,11 @@ describe("Assertions Tests", () => {
       cy.get(selectors.usernameInput).type("Admin");
       cy.get(selectors.passwordInput).type("admin123");
       cy.get(selectors.loginButton).click();
-      // cy.get(selectors.profileName).should("contain.text", expectedName);
-      //cy.get(selectors.profileName).then((text) => {
-      //  let actName = text;
-      //  expect(actName).to.eq(expectedName);
-      //  assert.equal(actName, expectedName);
-      // });
       cy.get(selectors.profileArea).wait(800).should("be.visible").click();
       cy.wait(1000);
       cy.contains(selectors.logoutButton).click();
     });
   });
+
+  it("examples test assertions", () => {});
 });
